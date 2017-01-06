@@ -1,3 +1,10 @@
-<p>
-  calendar works!
-</p>
+<div class="cell"
+     [class.sun]="day.date.getDay() == 0"
+     [class.sat]="day.date.getDay() == 6"
+     [class.selected]="day.selected"
+     *ngFor="let day of days">
+    <span>{{day.date.getDate()}}</span>
+    <span>+10,000</span>
+    <span>-10,000</span>
+    <span>-10,000</span>
+</div>

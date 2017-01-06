@@ -1,5 +1,5 @@
 @import "assets/styles/var";
-
+@import "assets/styles/macro";
 
 * {
     box-sizing: border-box;
@@ -10,10 +10,17 @@ a, a:hover, a:visited {
     text-decoration: none;
 }
 
+html {
+    height: 100%;
+    @include vendor-prefix(text-size-adjust, 100%); /* Prevent font scaling in landscape while allowing user zoom */
+    @include vendor-prefix(user-select, none);
+}
+
 body {
     margin: 0;
     color: white;
     background-color: $brown4;
+    height: 100%;
 }
 
 nav {
@@ -35,4 +42,60 @@ nav {
             text-align: center;
         }
     }
+}
+
+
+div.container {
+    height: 100%;
+}
+
+
+div.cell {
+    display: inline-block;
+    padding: .2em;
+    width: calc(100%/7);
+    height: 10em;
+    border-right: 1px solid $c5;
+    border-bottom: 1px solid $c5;
+    text-align: right;
+    line-height: 1.2em;
+    font-size: .5em;
+
+    &:nth-child(-n+7) {
+        border-top: 1px solid $c5;
+    }
+
+    &:nth-child(7n+1) {
+        border-left: 1px solid $c5;
+    }
+
+    &.sun {
+        span:first-child {
+            color: $c3;
+        }
+    }
+
+    &.sat {
+        span:first-child {
+            color: $c5;
+        }
+    }
+
+    &.selected {
+        background-color: $brown3;
+    }
+
+    span {
+        display:block;
+    }
+
+    span:first-child {
+        font-weight: bold;
+    }
+}
+
+div.list {
+    background-color: $brown2;
+    padding: 1em;
+    overflow-y: auto;
 }
