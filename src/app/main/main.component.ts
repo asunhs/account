@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'ac-items',
-  templateUrl: './items.component.html'
+  selector: 'ac-main',
+  templateUrl: './main.component.html'
 })
-export class ItemsComponent implements OnInit {
+export class MainComponent implements OnInit {
 
   constructor() { }
 

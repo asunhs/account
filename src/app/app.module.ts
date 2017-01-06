@@ -3,23 +3,24 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { MainModule } from './main/main.module';
 
-import appRoutes from './app.routing';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CalendarComponent } from './calendar/calendar.component';
 import { ItemsComponent } from './items/items.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    CalendarComponent,
     ItemsComponent
   ],
   imports: [
-    RouterModule.forRoot(appRoutes),
+    AppRoutingModule,
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    MainModule
   ],
   providers: [],
   bootstrap: [AppComponent]
