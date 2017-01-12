@@ -1,60 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, EventEmitter } from '@angular/core';
+import { CalendarService } from './calendar.service';
 
 @Component({
   selector: 'ac-calendar',
-  templateUrl: './calendar.component.html'
+  templateUrl: './calendar.component.html',
+  inputs: ['current', 'mode'],
+  outputs: ['onSelected']
 })
-export class CalendarComponent implements OnInit {
+export class CalendarComponent implements OnChanges {
 
-  days: any[] = [
-      {
-          date: new Date(2017, 0, 1)
-      },
-      {
-          date: new Date(2017, 0, 2)
-      },
-      {
-          date: new Date(2017, 0, 3)
-      },
-      {
-          date: new Date(2017, 0, 4)
-      },
-      {
-          date: new Date(2017, 0, 5)
-      },
-      {
-          date: new Date(2017, 0, 6)
-      },
-      {
-          date: new Date(2017, 0, 7)
-      },
-      {
-          date: new Date(2017, 0, 8)
-      },
-      {
-          date: new Date(2017, 0, 9)
-      },
-      {
-          date: new Date(2017, 0, 10)
-      },
-      {
-          date: new Date(2017, 0, 11),
-          selected: true
-      },
-      {
-          date: new Date(2017, 0, 12)
-      },
-      {
-          date: new Date(2017, 0, 13)
-      },
-      {
-          date: new Date(2017, 0, 14)
+  days: any[];
+  @Input() current: Date;
+  @Input() mode: string;
+
+  onSelected: EventEmitter<Date>;
+
+  constructor(private calendar:CalendarService) {
+      this.onSelected = new EventEmitter();
+  }
+
+  ngOnChanges(changes) {
+      this.render();
+  }
+
+  select(d:Date) {
+      this.onSelected.emit(d);
+  }
+
+  render() {
+      switch (this.mode) {
+          case "month": {
+              this.days = this.calendar.getCalendar(this.current);
+              break;
+          }
+          case "week": {
+              this.days = this.calendar.getWeek(this.current);
+              break;
+          }
       }
-  ];
 
-  constructor() { }
-
-  ngOnInit() {
   }
 
 }

@@ -1,4 +1,2 @@
-<div class="container">
-    <ac-calendar></ac-calendar>
-    <ac-list></ac-list>
-</div>
+<ac-calendar [current]="current" [mode]="mode" (onSelected)="select($event)"></ac-calendar>
+<ac-list class="container" *ngIf="mode === 'week'"></ac-list>

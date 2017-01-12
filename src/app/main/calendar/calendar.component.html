@@ -2,6 +2,8 @@
      [class.sun]="day.date.getDay() == 0"
      [class.sat]="day.date.getDay() == 6"
      [class.selected]="day.selected"
+     [class.dim]="day.date.getMonth() !== current.getMonth()"
+     (click)="select(day.date)"
      *ngFor="let day of days">
     <span>{{day.date.getDate()}}</span>
     <span>+10,000</span>
