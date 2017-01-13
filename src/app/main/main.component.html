@@ -1,2 +1,6 @@
+<div class="header">
+    {{current.format('YYYY년 MM월')}}
+</div>
+
 <ac-calendar [current]="current" [mode]="mode" (onSelected)="select($event)"></ac-calendar>
 <ac-list class="container" *ngIf="mode === 'week'"></ac-list>

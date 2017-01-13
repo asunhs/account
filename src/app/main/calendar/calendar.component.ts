@@ -1,5 +1,8 @@
 import { Component, Input, OnChanges, EventEmitter } from '@angular/core';
 import { CalendarService } from './calendar.service';
+import { Moment } from 'moment';
+
+import * as moment from 'moment';
 
 @Component({
   selector: 'ac-calendar',
@@ -10,10 +13,10 @@ import { CalendarService } from './calendar.service';
 export class CalendarComponent implements OnChanges {
 
   days: any[];
-  @Input() current: Date;
+  @Input() current: Moment;
   @Input() mode: string;
 
-  onSelected: EventEmitter<Date>;
+  onSelected: EventEmitter<Moment>;
 
   constructor(private calendar:CalendarService) {
       this.onSelected = new EventEmitter();
@@ -23,7 +26,7 @@ export class CalendarComponent implements OnChanges {
       this.render();
   }
 
-  select(d:Date) {
+  select(d:Moment) {
       this.onSelected.emit(d);
   }
 
@@ -39,6 +42,10 @@ export class CalendarComponent implements OnChanges {
           }
       }
 
+  }
+
+  isSelected(d:Moment) {
+      return d.isSame(this.current, 'day');
   }
 
 }

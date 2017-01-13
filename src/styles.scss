@@ -39,7 +39,6 @@ ac-root {
 
         > .container {
             flex: 1 1 auto;
-            display: flex;
             overflow-y: auto;
         }
     }
@@ -70,7 +69,7 @@ div.cell {
     display: inline-block;
     padding: .2em;
     width: calc(100%/7);
-    height: 10em;
+    height: 8em;
     border-right: 1px solid $c5;
     border-bottom: 1px solid $c5;
     text-align: right;
@@ -118,8 +117,17 @@ div.cell {
     }
 }
 
-div.list {
-    width: 100%;
-    background-color: $brown2;
-    padding: 1em;
+ac-main {
+    padding: .5em;
+
+    .header {
+        text-align: right;
+        font-size: 1.2em;
+        padding: .2em 0;
+    }
+
+    .container {
+        background-color: $brown2;
+        padding: 1em;
+    }
 }

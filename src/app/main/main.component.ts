@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Moment } from 'moment';
+
+import * as moment from 'moment';
 
 @Component({
     selector: 'ac-main',
@@ -6,23 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-    current: Date;
+    current: Moment;
     mode: string;
 
     constructor() {
         this.mode = "month";
-        this.current = new Date(2017, 1, 1);
+        this.current = moment();
     }
 
     ngOnInit() {
     }
 
-    select(current:Date) {
+    select(current:Moment) {
+
+        if (current.isSame(this.current, 'day')) {
+            this.toggleMode();
+        } else {
+            this.mode = "week";
+        }
+
         this.current = current;
-        this.changeMode();
     }
 
-    changeMode() {
+    toggleMode() {
         if (this.mode == "month") {
             this.mode = "week";
         } else {
